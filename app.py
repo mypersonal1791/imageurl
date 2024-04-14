@@ -35,10 +35,7 @@ def upload_pdf():
         path = 'Work/' + file.filename
         try:
 
-            data = supabase.storage.from_(bucket_name).upload('Work/' + file.filename, contents, {
-                
-                'contentType': "image/webp"
-              })
+            data = supabase.storage.from_(bucket_name).upload('Work/' + file.filename, contents, file_options={"content-type": "image/webp"})
 
             res = supabase.storage.from_(bucket_name).get_public_url(path)
         except:
